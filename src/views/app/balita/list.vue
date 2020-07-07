@@ -1,22 +1,22 @@
 <template>
   <div id="balita-list">
+    <v-toolbar flat>
+      <v-app-bar-nav-icon @click="$router.push('/app/balita/add')">
+        <v-icon color="blue accent-2" large>
+          add
+        </v-icon>
+      </v-app-bar-nav-icon>
+      <v-toolbar-title>Data Alternatif</v-toolbar-title>
+      <v-spacer/>
+      <v-text-field
+        v-model="keyword"
+        hide-details
+        flat
+        placeholder="Keyword pencarian berdasarkan nama pasien dan nama penyakit."
+        prepend-icon="mdi-magnify"
+      />
+    </v-toolbar>
     <v-card tile flat>
-      <v-toolbar flat>
-        <v-app-bar-nav-icon @click="$router.push('/app/balita/add')">
-          <v-icon color="blue accent-2" large>
-            add
-          </v-icon>
-        </v-app-bar-nav-icon>
-        <v-toolbar-title>Data Alternatif</v-toolbar-title>
-        <v-spacer/>
-        <v-text-field
-          v-model="keyword"
-          hide-details
-          flat
-          placeholder="Keyword pencarian berdasarkan nama pasien dan nama penyakit."
-          prepend-icon="mdi-magnify"
-        />
-      </v-toolbar>
       <v-data-table
         :headers="headers"
         :items="filtered"

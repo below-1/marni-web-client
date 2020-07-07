@@ -1,57 +1,40 @@
 <template>
   <div id="pkm-wrapper">
     <v-app-bar
-      app
-      absolute
       dark
-      src="https://picsum.photos/1920/1080?random"
+      flat
       fade-img-on-scroll
-      height=120
     >
-      <template v-slot:img="{ props }">
-        <v-img
-          v-bind="props"
-          gradient="to top right, rgba(27,94,32, .7), rgba(27,94,32, .7)"
-        ></v-img>
-      </template>
       <v-app-bar-nav-icon>
         <v-icon dark color="green">
           add
         </v-icon>
       </v-app-bar-nav-icon>
-      <v-spacer/>
       <v-toolbar-title style="font-size: 18px;">
-        Sistem Pendukung Keputusan Penentuan Status Gizi Buruk Balita Puskesmas Tetaf, Kec. Kuatnana, Kab. TTS, NTT
+        SIAPKM
       </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items>
         <v-btn @click="handleLogout" text>Logout</v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <v-content>
-      <v-container>
-        <v-row>
-          <v-col cols=10 offset=1>
-            <v-toolbar dense extended extension-height="2px">
-              <v-toolbar-items>
-                <v-btn text to="/">Home</v-btn>
-                <v-btn text to="/app/balita/list">Alternatif</v-btn>
-                <v-btn text to="/app/rank">Perangkingan</v-btn>
-                <v-btn text to="/app/laporan">Laporan</v-btn>
-                <v-btn text to="/app/settings">Kriteria</v-btn>
-              </v-toolbar-items>
-              <v-spacer/>
-              <template #extension>
-                <div class="green" style="height: 2px; width: 100%;"></div>
-              </template>
-            </v-toolbar>
-            <v-card>
-              <router-view/>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
+    <v-toolbar dense flat dark color="green">
+      <v-toolbar-items>
+        <v-btn text to="/">Home</v-btn>
+        <v-btn text to="/app/balita/list">Alternatif</v-btn>
+        <v-btn text to="/app/rank">Nilai</v-btn>
+        <v-btn text to="/app/laporan">Laporan</v-btn>
+        <v-btn text to="/app/kriteria/list">Kriteria</v-btn>
+        <v-btn text to="/app/priors">Defuzzifikasi</v-btn>
+        <v-btn text to="/app/standar_bb">Anthropometry</v-btn>
+        <v-btn text to="/app/sg">Status Gizi</v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+    <v-main>
+      <div class="px-6 my-6">
+        <router-view/>
+      </div>
+    </v-main>
     <v-footer app class="mt-4 pa-4">
       <v-flex
         xs12

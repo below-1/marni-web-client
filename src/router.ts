@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
+import ViewPriors from './views/priors.vue';
 
 Vue.use(Router)
 
@@ -33,6 +34,20 @@ export default new Router({
           component: () => import("./views/app/kriteria/list.vue"),
         },
         {
+          path: 'kriteria/add',
+          component: () => import("./views/app/kriteria/create.vue"),
+        },
+        {
+          path: 'kriteria/:id/subs',
+          props: true,
+          component: () => import("./views/app/kriteria/subs/list.vue"),
+        },
+        {
+          path: 'kriteria/:id/subs/add',
+          component: () => import("./views/app/kriteria/subs/create.vue"),
+          props: true
+        },
+        {
           path: 'balita/list',
           component: () => import("./views/app/balita/list.vue"),
         },
@@ -56,6 +71,18 @@ export default new Router({
         {
           path: 'settings',
           component: () => import("./views/app/settings.vue")
+        },
+        {
+          path: 'priors',
+          component: () => import("./views/priors.vue")
+        },
+        {
+          path: 'standar_bb',
+          component: () => import("./views/app/standar_bb.vue")
+        },
+        {
+          path: 'sg',
+          component: () => import("./views/app/bobot_status_gizi.vue")
         }
       ]
     }

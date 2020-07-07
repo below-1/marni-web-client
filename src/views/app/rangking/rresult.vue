@@ -2,7 +2,14 @@
   <div id="balita-list">
     <v-card tile flat>
       <v-toolbar flat>
-        <v-toolbar-title>Hasil Perangkingan</v-toolbar-title>
+        <v-toolbar-title class="mr-2">Hasil Nilai</v-toolbar-title>
+
+        <v-btn-toggle mandatory dense v-model="mode">
+          <v-btn small value="normal">nilai</v-btn>
+          <v-btn small value="defuzz">defuzzifikasi</v-btn>
+          <v-btn small value="normed">normalisasi</v-btn>
+        </v-btn-toggle>
+
         <v-spacer/>
         <v-text-field
           v-model="keyword"
@@ -13,7 +20,67 @@
           prepend-icon="mdi-magnify"
         />
       </v-toolbar>
+
+      <v-simple-table v-if="mode == 'normed'">
+        <template v-slot:default>
+          <thead>
+            <tr>
+              <td>Id</td>
+              <td>Alternatif</td>
+              <td>C1</td>
+              <td>C2</td>
+              <td>C3</td>
+              <td>C4</td>
+              <td>V</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in items" :key="item.id">
+              <td>{{ item.id }}</td>
+              <td>{{ item.nama }}</td>
+              <td>{{ item.fuzz[0].toFixed(3) }}</td>
+              <td>{{ item.fuzz[1].toFixed(3) }}</td>
+              <td>{{ item.fuzz[2].toFixed(3) }}</td>
+              <td>{{ item.fuzz[3].toFixed(3) }}</td>
+              <td>
+                {{ item.v.toFixed(3) }}
+              </td>
+            </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
+
+      <v-simple-table v-if="mode == 'defuzz'">
+        <template v-slot:default>
+          <thead>
+            <tr>
+              <td>Id</td>
+              <td>Alternatif</td>
+              <td>C1</td>
+              <td>C2</td>
+              <td>C3</td>
+              <td>C4</td>
+              <td>V</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in items" :key="item.id">
+              <td>{{ item.id }}</td>
+              <td>{{ item.nama }}</td>
+              <td>{{ item.norm[0].toFixed(3) }}</td>
+              <td>{{ item.norm[1].toFixed(3) }}</td>
+              <td>{{ item.norm[2].toFixed(3) }}</td>
+              <td>{{ item.norm[3].toFixed(3) }}</td>
+              <td>
+                {{ item.v.toFixed(3) }}
+              </td>
+            </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
+
       <v-data-table
+        v-if="mode == 'normal'"
         :headers="headers"
         :items="filtered"
         hide-default-footer
@@ -29,6 +96,7 @@
         </template>
 
       </v-data-table>
+
     </v-card>
   </div>
 </template>
@@ -43,6 +111,7 @@ type IData = {
   headers: any[];
   items: any[];
   keyword: string;
+  mode: 'normal' | 'defuzz' | 'normed';
 }
 
 const defData = () => ({
@@ -86,7 +155,8 @@ const defData = () => ({
     }
   ],
   items: [] as any[],
-  keyword: ''
+  keyword: '',
+  mode: 'normal'
 });
 
 export default Vue.extend({
