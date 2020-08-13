@@ -34,12 +34,6 @@
             subs
           </v-btn>
 
-          <v-btn dark small icon :to="`/app/kriteria/${item.id}/edit`">
-            <v-icon small color="green">
-              create
-            </v-icon>
-          </v-btn>
-
           <v-btn dark small icon @click="del(item.id)">
             <v-icon small color="red">
               remove
@@ -103,7 +97,14 @@ export default {
         })
     },
     del (id) {
-      console.log('deleting id = ', id)
+      axios.delete(`/kriteria/${id}`)
+        .then(resp => {
+          return this.loadData()
+        })
+        .catch(err => {
+          console.log(err);
+          alert('gagal menghapus data')
+        })
     }
   },
   mounted () {

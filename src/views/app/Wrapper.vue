@@ -38,7 +38,6 @@
     <v-footer app class="mt-4 pa-4">
       <v-flex
         xs12
-        class="text-center"
       >
         {{ new Date().getFullYear() }} — <strong>Marni Nokas</strong>
       </v-flex>

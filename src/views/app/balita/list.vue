@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { instance as axios } from '@/services/axios';
 import { apiListBalita, apiDeleteBalita } from '@/services/balita';
 
 type IData = {
@@ -83,10 +84,6 @@ const defData = () => ({
     {
       text: 'Jenis Kelamin',
       value: 'sex'
-    },
-    {
-      text: '',
-      value: 'action'
     }
   ],
   items: [],
@@ -108,6 +105,20 @@ export default Vue.extend({
 
   methods: {
 
+    async load_kriteria () {
+      const resp = await axios.get('/kriteria');
+      const kriteria = resp.data;
+      console.log(kriteria);
+      this.headers = [ ...this.headers, ...kriteria.map((k: any) => ({
+        text: k.label,
+        value: k.kode
+      })),  {
+          text: '',
+          value: 'action'
+        } ];
+
+    },
+
     async loadDataBalita() {
       this.items = await apiListBalita();
     },
@@ -128,6 +139,7 @@ export default Vue.extend({
 
   mounted() {
     this.loadDataBalita();
+    this.load_kriteria();
   }
 
 });

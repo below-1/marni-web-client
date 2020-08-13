@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.2173be9b53781d8d3974de84e54b9c69.js"
+  "/precache-manifest.866e6c95d679b9f86c2fa8a9aecf2137.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "marni-nokas-web-client"});
