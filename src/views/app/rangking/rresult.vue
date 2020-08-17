@@ -2,7 +2,7 @@
   <div id="balita-list">
     <v-card tile flat>
       <v-toolbar flat>
-        <v-toolbar-title class="mr-2">Hasil Nilai</v-toolbar-title>
+        <v-toolbar-title class="mr-2">Status Gizi</v-toolbar-title>
 
         <v-btn-toggle mandatory dense v-model="mode">
           <v-btn small value="normal">nilai</v-btn>
@@ -95,6 +95,10 @@
           {{ item.v.toFixed(3) }}
         </template>
 
+        <template v-slot:item.bb="{ item }">
+          GIZI {{ item.bb }}
+        </template>
+
       </v-data-table>
 
     </v-card>
@@ -126,27 +130,27 @@ const defData = () => ({
       value: 'nama'
     },
     {
-      text: 'Umur',
+      text: 'Umur (tahun)',
       value: 'age'
     },
     {
-      text: 'BB',
+      text: 'Berat Badan',
       value: 'beratBadan'
     },
     {
-      text: 'TB',
+      text: 'Tinggi Badan',
       value: 'tinggiBadan'
     },
     {
-      text: 'JK',
+      text: 'Jenis Kelamin',
       value: 'sex'
     },
     {
-      text: 'V',
+      text: 'Nilai Akhir',
       value: 'v'
     },
     {
-      text: 'BB/U',
+      text: 'Berat Badan Menurut Umur',
       value: 'bb'
     },
     {

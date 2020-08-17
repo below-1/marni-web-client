@@ -11,26 +11,13 @@
           v-model="item.label"
           label="Label"
         />
-        <v-row>
-          <v-col>
-            <v-text-field
-              v-model.number="item.weight_a"
-              type="number"
-            />
-          </v-col>
-          <v-col>
-          <v-text-field
-            v-model.number="item.weight_b"
-            type="number"
-          />
-          </v-col>
-          <v-col>
-          <v-text-field
-            v-model.number="item.weight_c"
-            type="number"
-          />
-          </v-col>
-        </v-row>
+        
+        <v-select
+          v-model="weight"
+          :items="weight_options"
+          label="bobot"
+        >
+        </v-select>
 
         <v-select
           v-model="item.type_kriteria"
@@ -69,6 +56,14 @@
 <script>
 import { instance as axios } from '@/services/axios';
 
+const weight_options = [
+  { text: 'sangat rendah', value: [0, 0, 0.25] },
+  { text: 'rendah', value: [0, 0.25, 0.5] },
+  { text: 'normal', value: [0.25, 0.5, 0.75] },
+  { text: 'tinggi', value: [0.5, 0.75, 1.0] },
+  { text: 'sangat tinggi', value: [0.75, 0.75, 1.0] }
+];
+
 export default {
   data: () => ({
     item: {
@@ -82,11 +77,17 @@ export default {
     },
     options: {
       type: ['categorial', 'numeric']
-    }
+    },
+    weight: weight_options[0].value,
+    weight_options: [...weight_options]
   }),
   methods: {
     save () {
-      axios.post('/kriteria/', this.item)
+      const item = { ...this.item };
+      item.weight_a = this.weight[0];
+      item.weight_b = this.weight[1];
+      item.weight_c = this.weight[2];
+      axios.post('/kriteria/', item)
         .then(resp => {
           alert('sukses menambah data kriteria');
           this.$router.push('/app/kriteria/list');

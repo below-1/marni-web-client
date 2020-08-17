@@ -10,7 +10,7 @@
 					<v-icon class="ml-2">picture_as_pdf</v-icon>
 				</a>
 				<a class="link" href="http://localhost:5000/api/report/perangkingan" target="_blank">
-					Laporan Perangkingan
+					Laporan Status Gizi
 					<v-icon class="ml-2">picture_as_pdf</v-icon>
 				</a>
 			</v-card-text>

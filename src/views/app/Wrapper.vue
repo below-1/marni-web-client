@@ -27,7 +27,7 @@
         <v-btn text to="/app/kriteria/list">Kriteria</v-btn>
         <v-btn text to="/app/priors">Defuzzifikasi</v-btn>
         <v-btn text to="/app/standar_bb">Anthropometry</v-btn>
-        <v-btn text to="/app/sg">Status Gizi</v-btn>
+        <v-btn text to="/app/sg">Bobot WHO</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-main>
